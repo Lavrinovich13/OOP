@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Sorting
 {
     interface ISortingAlgorithm
     {
-        T Sort<T, K>(T elements, IComparer<K> comparer)
-            where T : ICollection<K>, new();
+        void Sort<T, K>(T elements, IComparer<K> comparer)
+            where T : IList<K>;
     }
 }

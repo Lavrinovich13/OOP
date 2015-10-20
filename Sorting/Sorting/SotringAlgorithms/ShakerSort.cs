@@ -8,43 +8,34 @@ namespace Sorting
 {
     class ShakerSort : ISortingAlgorithm
     {
-        public T Sort<T, K>(T elements, IComparer<K> comparer) where T : ICollection<K>, new()
+        public void Sort<T, K>(T elements, IComparer<K> comparer) 
+            where T : IList<K>
         {
-            T newEl = new T();
-
-            var list = elements.ToList();
-
             int from, to;
-            for (int i = 0; i < list.Count() / 2; i++)
+            for (int i = 0; i < elements.Count() / 2; i++)
             {
                 from = 0;
-                to = list.Count() - 1;
+                to = elements.Count() - 1;
                 do
                 {
-                    if (comparer.Compare(list[from],list[from + 1]) == 1)
+                    if (comparer.Compare(elements[from],elements[from + 1]) == 1)
                     {
-                        var temp = list.ElementAt(from);
-                        list[from] = list[from + 1];
-                        list[from + 1] = temp;
+                        var temp = elements.ElementAt(from);
+                        elements[from] = elements[from + 1];
+                        elements[from + 1] = temp;
                     }
                     from++;
 
-                    if (comparer.Compare(list[to - 1], list[to]) == 1)
+                    if (comparer.Compare(elements[to - 1], elements[to]) == 1)
                     {
-                        var temp = list.ElementAt(to - 1);
-                        list[to - 1] = list[to];
-                        list[to] = temp;
+                        var temp = elements.ElementAt(to - 1);
+                        elements[to - 1] = elements[to];
+                        elements[to] = temp;
                     }
                     to--;
                 }
                 while (from <= to);
             }
-
-            foreach (var item in list)
-            {
-                newEl.Add(item);
-            }
-            return newEl;
         }
     }
 }

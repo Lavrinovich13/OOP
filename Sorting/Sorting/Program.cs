@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -23,10 +24,7 @@ namespace Sorting
            Console.WriteLine("Shaker sort-> ");
            SortList(list, new ShakerSort());
            Console.WriteLine("Bubble sort-> ");
-           SortList(list, new BubbleSort());
-
            Console.Read();
-           
         }
 
         static void SortList(List<int> list, ISortingAlgorithm sortingAlgorithm)

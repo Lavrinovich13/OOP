@@ -8,22 +8,14 @@ namespace Sorting
 {
     class QuickSort : ISortingAlgorithm
     {
-        public T Sort<T, K>(T elements, IComparer<K> comparer) 
-            where T : ICollection<K>, new()
+        public void Sort<T, K>(T elements, IComparer<K> comparer) 
+            where T : IList<K>
         {
-            T newEl = new T();
+             _QuickSort(elements, 0, elements.Count() - 1, comparer);
 
-             var list = elements.ToList();
-             _QuickSort(list, 0, elements.Count() - 1, comparer);
-
-             foreach (var item in list)
-             {
-                 newEl.Add(item);
-             }
-             return newEl;
         }
 
-        private void _QuickSort<K>(List<K> list, int from, int to, IComparer<K> comparer)
+        private void _QuickSort<K>(IList<K> list, int from, int to, IComparer<K> comparer)
         {
             int _from = from;
             int _to = to;

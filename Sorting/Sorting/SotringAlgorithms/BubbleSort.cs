@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,30 +9,21 @@ namespace Sorting
 {
     class BubbleSort : ISortingAlgorithm
     {
-        public T Sort<T, K>(T elements, IComparer<K> comparer) 
-            where T : ICollection<K>, new()
+        public void Sort<T, K>(T elements, IComparer<K> comparer) 
+            where T : IList<K>
         {
-            T newEl = new T();
-
-            var list = elements.ToList();
-            for (int i = 0; i < list.Count(); i++)
+            for (int i = 0; i < elements.Count(); i++)
             {
-                for (int j = i + 1; j < list.Count(); j++)
+                for (int j = i + 1; j < elements.Count(); j++)
                 {
-                    if (comparer.Compare(list.ElementAt(j), list.ElementAt(i)) == -1)
+                    if (comparer.Compare(elements.ElementAt(j), elements.ElementAt(i)) == -1)
                     {
-                        var temp = list.ElementAt(i);
-                        list[i] = list[j];
-                        list[j] = temp;
+                        var temp = elements.ElementAt(i);
+                        elements[i] = elements[j];
+                        elements[j] = temp;
                     }
                 }
             }
-
-            foreach(var item in list)
-            {
-                newEl.Add(item);
-            }
-            return newEl;
         }
     }
 }
