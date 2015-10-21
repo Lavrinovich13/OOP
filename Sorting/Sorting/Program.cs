@@ -21,8 +21,12 @@ namespace Sorting
 
            Console.WriteLine("Quick sort-> ");
            SortList(list, new QuickSort());
+
+           list = list.Select(x => random.Next()).ToList();
            Console.WriteLine("Shaker sort-> ");
            SortList(list, new ShakerSort());
+
+           list = list.Select(x => random.Next()).ToList();
            Console.WriteLine("Bubble sort-> ");
            Console.Read();
         }
